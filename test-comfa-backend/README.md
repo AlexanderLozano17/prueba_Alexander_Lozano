@@ -1,61 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Proyecto Backend: API de Personajes (Laravel con Sail)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este repositorio contiene el backend de la API de Personajes, desarrollado con Laravel y ejecutado con Sail (Docker). Proporciona los endpoints necesarios para gestionar información sobre personajes, incluyendo sus orígenes y ubicaciones.
 
-## About Laravel
+## 🚀 Cómo Empezar
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local usando Docker y Laravel Sail.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Prerequisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Asegúrate de tener instalado lo siguiente:
 
-## Learning Laravel
+- **Docker Desktop**: Incluye Docker Engine y Docker Compose, necesarios para ejecutar Sail.
+- **Git**: Para clonar el repositorio.
+- **Un editor de código**: Como VS Code.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ⚙️ Instalación
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Clona el repositorio:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone  https://lex1102@bitbucket.org/lex1102/prueba_alexander_lozano.git 
+cd test-comfa-backend
+```
 
-## Laravel Sponsors
+### Copia el archivo de entorno:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+cp .env.example .env
+```
 
-### Premium Partners
+### Configura Sail y Dependencias:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Ejecuta el script sail para construir las imágenes de Docker e instalar las dependencias de Composer. Esto puede tardar un poco la primera vez.
 
-## Contributing
+```bash
+./vendor/bin/sail up -d # Inicia los contenedores en segundo plano
+./vendor/bin/sail composer install # Instala las dependencias de PHP
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> Si el comando sail no se encuentra, asegúrate de que estás en la carpeta backend y que el archivo `vendor/bin/sail` existe.
 
-## Code of Conduct
+### Genera la clave de aplicación:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+./vendor/bin/sail artisan key:generate
+```
 
-## Security Vulnerabilities
+### Configura tu base de datos en `.env`:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Sail configura automáticamente la conexión a la base de datos MySQL dentro de Docker. Por defecto, las credenciales suelen ser:
 
-## License
+```env
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=prueba
+DB_USERNAME=sail
+DB_PASSWORD=password
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> Normalmente, no necesitarás crear la base de datos manualmente fuera de Docker, Sail se encarga de eso.
+
+## 📊 Migraciones y Seeders
+
+Con los contenedores de Sail levantados, puedes ejecutar las migraciones para crear las tablas y los seeders para poblar con datos de prueba.
+
+### Ejecuta las migraciones:
+
+```bash
+./vendor/bin/sail artisan migrate
+```
+
+### Ejecuta los seeders:
+
+```bash
+./vendor/bin/sail artisan db:seed
+```
+
+### Refrescar la base de datos:
+
+```bash
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+## ▶️ Arrancar el Servidor
+
+Asegúrate de que los contenedores de Sail estén corriendo:
+
+```bash
+./vendor/bin/sail up -d
+```
+
+El servidor estará disponible en [http://localhost:8000](http://localhost:8000).
+
+Para detener los contenedores:
+
+```bash
+./vendor/bin/sail down
+```
+
+## 🗄️ Estructura de la Base de Datos
+
+### personajes
+
+- id
+- nombre
+- estado
+- especie
+- tipo
+- genero
+- origen_id
+- ubicacion_id
+- imagen_url
+- url
+- created_at, updated_at
+
+### origenes
+
+- id
+- nombre
+- tipo
+- dimension
+- url
+- created_at, updated_at
+
+### ubicaciones
+
+- id
+- nombre
+- tipo
+- dimension
+- url
+- created_at, updated_at
+
+### otras tablas
+
+- users
+- password_reset_tokens
+- failed_jobs
+- personal_access_tokens
+
+## 🧪 Datos de Prueba (Seeders)
+
+- **OrigenSeeder**: Crea orígenes ficticios.
+- **UbicacionSeeder**: Crea ubicaciones ficticias.
+- **PersonajeSeeder**: Crea personajes de prueba con relaciones a origenes y ubicaciones.
+
+> Estos datos de prueba son útiles para para probar los endpoints de la API sin depender de datos reales.
