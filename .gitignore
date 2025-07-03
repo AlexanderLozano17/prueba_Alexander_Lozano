@@ -25,47 +25,47 @@ ehthumbs.db
 Desktop.ini
 
 # ------------------------------------
-# Ignorar dependencias de Node.js (común en frontend y algunas herramientas de backend)
+# Ignorar dependencias de Node.js (común en test-comfa-front y algunas herramientas de test-comfa-backend)
 # ------------------------------------
 node_modules/
 
 # ------------------------------------
-# Ignorar archivos y directorios específicos de Laravel (Backend)
+# Ignorar archivos y directorios específicos de Laravel (test-comfa-backend)
 # ------------------------------------
-/backend/vendor/
-/backend/node_modules/      # Si Laravel también usa Node para Vite/Mix
-/backend/.env               # El archivo .env es crucial para la seguridad
-/backend/.env.backup
-/backend/public/hot         # Archivos de Vite/Mix para hot-reloading
-/backend/public/storage     # Link simbólico, no debe estar en Git
-/backend/storage/*.key      # Claves de almacenamiento
-/backend/storage/*.log      # Logs de Laravel
-/backend/bootstrap/cache/*.php # Archivos de caché generados
-/backend/Homestead.json
-/backend/Homestead.yaml
-/backend/src/*.bak          # Archivos de backup del editor
-/backend/*.sqlite           # Bases de datos SQLite si las usas
+/test-comfa-backend/vendor/
+/test-comfa-backend/node_modules/     
+/test-comfa-backend/.env               
+/test-comfa-backend/.env.backup
+/test-comfa-backend/public/hot         
+/test-comfa-backend/public/storage     
+/test-comfa-backend/storage/*.key     
+/test-comfa-backend/storage/*.log     
+/test-comfa-backend/bootstrap/cache/*.php
+/test-comfa-backend/Homestead.json
+/test-comfa-backend/Homestead.yaml
+/test-comfa-backend/src/*.bak          
+/test-comfa-backend/*.sqlite           
 
 # ------------------------------------
-# Ignorar archivos y directorios específicos de Angular (Frontend)
+# Ignorar archivos y directorios específicos de Angular (test-comfa-front)
 # ------------------------------------
-/frontend/node_modules/
-/frontend/dist/             # Carpeta de salida de la construcción (build)
-/frontend/npm-debug.log
-/frontend/yarn-error.log
-/frontend/.angular/         # Cache de Angular CLI
-/frontend/.browserslistrc   # Archivo de configuración de Browserslist (generalmente no se versiona)
-/frontend/coverage/         # Reportes de cobertura de pruebas
-/frontend/src/environments/*.ts # Si tienes archivos de entorno con datos sensibles
-/frontend/src/environments/*.prod.ts # O si tienes un archivo .prod.ts con variables sensibles
+/test-comfa-front/node_modules/
+/test-comfa-front/dist/            
+/test-comfa-front/npm-debug.log
+/test-comfa-front/yarn-error.log
+/test-comfa-front/.angular/         
+/test-comfa-front/.browserslistrc   
+/test-comfa-front/coverage/         
+/test-comfa-front/src/environments/*.ts 
+/test-comfa-front/src/environments/*.prod.ts
 # IDEs / Editores
-/frontend/.idea/
-/frontend/.vscode/
+/test-comfa-front/.idea/
+/test-comfa-front/.vscode/
 # Archivos de caché del sistema de archivos
-/frontend/.cache/
-/frontend/tmp/
-/frontend/src/**/*.js       # Archivos JS generados por TypeScript si no los limpias
-/frontend/src/**/*.map      # Archivos de mapa de origen
+/test-comfa-front/.cache/
+/test-comfa-front/tmp/
+/test-comfa-front/src/**/*.js       
+/test-comfa-front/src/**/*.map      
 
 
 # ------------------------------------
