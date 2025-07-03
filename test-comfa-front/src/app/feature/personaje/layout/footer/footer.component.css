@@ -1,0 +1,141 @@
+/* src/app/layout/footer/footer.component.css */
+
+.app-footer {
+  width: 100%;
+  background-color: #212529; /* Fondo oscuro, similar al header */
+  color: #f8f9fa; /* Texto claro */
+  padding: 2.5rem 1rem; /* Espaciado interno generoso */
+  margin-top: 3rem; /* Margen superior para separar del contenido principal */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Borde superior sutil */
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las secciones se envuelvan en pantallas pequeñas */
+  justify-content: space-around; /* Distribuye el espacio entre las secciones */
+  max-width: 1200px; /* Ancho máximo para centrar el contenido */
+  margin: 0 auto; /* Centra el contenedor */
+  gap: 1.5rem; /* Espacio entre las secciones (Bootstrap 5 gap utility) */
+}
+
+.footer-section {
+  flex: 1; /* Permite que las secciones crezcan y se encojan */
+  min-width: 200px; /* Ancho mínimo para cada sección antes de envolver */
+  padding: 0 1rem; /* Espaciado lateral dentro de cada sección */
+}
+
+/* --- Brand/Copyright Section --- */
+.brand-section {
+  text-align: left;
+}
+
+.footer-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  display: block; /* Asegura que ocupe su propia línea */
+  margin-bottom: 0.5rem;
+}
+
+.copyright-text {
+  font-size: 0.875rem; /* Texto más pequeño */
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Links Section --- */
+.links-section h5,
+.contact-section h5 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none; /* Remueve los puntos de lista */
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem; /* Espacio entre enlaces */
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* --- Contact Section --- */
+.contact-section p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.5rem;
+}
+
+.social-icons {
+  margin-top: 1rem;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.social-icons a:hover {
+  color: #007bff; /* Un azul para hover, puedes cambiarlo */
+}
+
+/* Para los iconos placeholder */
+.social-icons .icon {
+  display: inline-block;
+  width: 24px; /* Ajusta el tamaño del icono */
+  text-align: center;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column; /* Apila las secciones en pantallas pequeñas */
+    text-align: center;
+  }
+
+  .footer-section {
+    padding: 1rem 0; /* Más padding vertical */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Separador entre secciones */
+  }
+
+  .footer-section:last-child {
+    border-bottom: none; /* No hay borde en la última sección */
+  }
+
+  .brand-section,
+  .links-section,
+  .contact-section {
+    min-width: unset; /* Anula el min-width */
+    width: 100%; /* Ocupa todo el ancho */
+  }
+
+  .footer-links {
+    display: flex; /* Para centrar enlaces */
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-links li {
+    margin: 0.25rem 0.75rem; /* Espacio entre enlaces en móvil */
+  }
+
+  .social-icons {
+    text-align: center; /* Centra los iconos sociales */
+  }
+}
