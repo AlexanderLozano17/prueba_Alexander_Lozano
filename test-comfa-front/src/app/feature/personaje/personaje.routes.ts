@@ -5,6 +5,6 @@ import { PersonajesImportadosComponent } from "./pages/personajes-importados/per
 
 export const PERSONAJE_ROUTES: Routes = [
     {path: '', component: PersonajeListarComponent},
-    {path: 'id/detalle', component: PersonajeDetalleComponent },
+    {path: 'importado/:id/detalle', component: PersonajeDetalleComponent },
     {path: 'importados', component: PersonajesImportadosComponent }
 ];

@@ -38,9 +38,17 @@ export class ImportarPersonajeService {
    * @param id 
    * @returns 
    */
+  obtenerPersonajeImportado(id: number): Observable<PersonajeImportar> {
+    return this.http.get<PersonajeImportar>(`${this.personajesApiUrl}/${id}`);
+  }
+
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
   eliminarPersonajeImportado(id: number): Observable<any> {
-    const url = `${this.personajesApiUrl}/${id}`
-    return this.http.delete<any>(url, { observe: 'response' });
+    return this.http.delete<any>(`${this.personajesApiUrl}/${id}`, { observe: 'response' });
   }
   
   private mapUbicacionRickMortyToUbicacion(ubicacionRM: UbicacionRickMorty): Ubicacion {

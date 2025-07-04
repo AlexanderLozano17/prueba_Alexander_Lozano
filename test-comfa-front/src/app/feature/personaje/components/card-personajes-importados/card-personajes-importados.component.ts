@@ -1,11 +1,12 @@
 import { Component, EventEmitter, input, Output } from '@angular/core';
 import { PersonajeImportar } from '../../models/ImportarPersonaje.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card-personajes-importados',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, NgClass],
   templateUrl: './card-personajes-importados.component.html',
   styleUrl: '../card-personaje/card-personaje.component.css'
 })

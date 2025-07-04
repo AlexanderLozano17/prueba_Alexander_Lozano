@@ -14,7 +14,9 @@ class PersonajeController extends Controller
     public function index()
     {
         // Obtiene todos los personajes con sus relaciones de origen y ubicación
-        $personajes = Personaje::with(['origen', 'ubicacion'])->get();
+        $personajes = Personaje::with(['origen', 'ubicacion', 'episodios'])
+                                ->orderBy('created_at', 'desc')
+                                ->get();
         return response()->json($personajes);
     }
 

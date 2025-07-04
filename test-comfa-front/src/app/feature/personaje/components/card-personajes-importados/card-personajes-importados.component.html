@@ -53,8 +53,8 @@
               &nbsp;<small class="text-muted ms-2">Actualizado: {{ personaje()?.updated_at | date:'shortDate' }}</small>
             }
           </li>
-
           <div class="d-flex justify-content-end gap-2 mt-3">
+            <a class="btn btn-see btn-sm" [routerLink]="[ '/personajes/importado', personaje()?.id, 'detalle' ]">Ver</a>
             <button class="btn btn-danger btn-sm" (click)="onEliminar()">Eliminar</button>
           </div>
         </ul>
