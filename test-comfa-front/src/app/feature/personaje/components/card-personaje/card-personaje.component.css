@@ -151,6 +151,18 @@
   border-color: #35c3dc;
 }
 
+.btn-danger {
+  color: #fff;
+  background-color: #d83f3a;
+  border-color: #d83f3a;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #d83f3a;
+  border-color: #d83f3a;
+}
+
 /* --- Media Query for Small Screens (below 768px - md breakpoint) --- */
 @media (max-width: 767.98px) {
   .card {

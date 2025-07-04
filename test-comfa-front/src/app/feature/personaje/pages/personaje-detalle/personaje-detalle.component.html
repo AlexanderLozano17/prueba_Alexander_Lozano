@@ -1,1 +1,126 @@
-<p>personaje-detalle works!</p>
+<div class="contenedor my-4">
+    @if (personaje) {
+        <div class="card mb-3 shadow-sm h-100">
+            <div class="card-body">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-3 text-center">
+                        <img [src]="personaje?.imagen_url" class="img-fluid rounded-circle p-2" [alt]="personaje?.nombre" style="max-width: 150px; height: auto;">
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="card-title mb-1">{{ personaje?.nombre }} (ID: {{ personaje?.id }})</h3>
+                        <p class="card-text mb-2">
+                        <span class="badge me-2" [ngClass]="{
+                            'bg-success': personaje?.estado === 'Alive',
+                            'bg-danger': personaje?.estado === 'Dead',
+                            'bg-secondary': personaje?.estado === 'unknown'
+                        }">
+                            {{ personaje?.estado }}
+                        </span>
+                        <span class="badge bg-info text-dark me-2">{{ personaje?.especie }}</span>
+                        <span class="badge bg-primary">{{ personaje?.genero }}</span>
+                        </p>
+                        <p class="card-text">
+                        <small class="text-muted">Tipo: {{ personaje?.tipo || 'N/A' }}</small><br>
+                        <small class="text-muted">URL: <a [href]="personaje?.url" target="_blank">{{ personaje?.url }}</a></small><br>
+                        <small class="text-muted">Creado: {{ personaje?.created_at | date:'medium' }}</small>
+                        @if (personaje?.updated_at) {
+                            <small class="text-muted ms-3">Actualizado: {{ personaje?.updated_at | date:'medium' }}</small>
+                        }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title mb-0">📍 Detalles de Origen</h5>
+                </div>
+                <div class="card-body">
+                    @if (personaje?.origen) {
+                        <p><strong>Nombre:</strong> {{ personaje?.origen?.nombre }}</p>
+                        <p><strong>Tipo:</strong> {{ personaje?.origen?.tipo || 'N/A' }}</p>
+                        <p><strong>Dimensión:</strong> {{ personaje?.origen?.dimension || 'N/A' }}</p>
+                        <p><strong>URL:</strong> <a [href]="personaje?.origen?.url" target="_blank">{{ personaje?.origen?.url }}</a></p>
+                        <p><small class="text-muted">Creado: {{ personaje?.origen?.created_at | date:'medium' }}</small></p>
+                        @if (personaje?.origen?.updated_at) {
+                            <p><small class="text-muted">Actualizado: {{ personaje?.origen?.updated_at | date:'medium' }}</small></p>
+                        }
+                    } @else {
+                        <p class="text-muted">No hay datos de origen disponibles.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+            <div class="card-header bg-dark text-white">
+                <h5 class="card-title mb-0">🗺️ Detalles de Ubicación</h5>
+            </div>
+            <div class="card-body">
+                @if (personaje?.ubicacion) {
+                    <p><strong>Nombre:</strong> {{ personaje?.ubicacion?.nombre }}</p>
+                    <p><strong>Tipo:</strong> {{ personaje?.ubicacion?.tipo || 'N/A' }}</p>
+                    <p><strong>Dimensión:</strong> {{ personaje?.ubicacion?.dimension || 'N/A' }}</p>
+                    <p><strong>URL:</strong> <a [href]="personaje?.ubicacion?.url" target="_blank">{{ personaje?.ubicacion?.url }}</a></p>
+                    <p><small class="text-muted">Creado: {{ personaje?.ubicacion?.created_at | date:'medium' }}</small></p>
+                    @if (personaje?.ubicacion?.updated_at) {
+                        <p><small class="text-muted">Actualizado: {{ personaje?.ubicacion?.updated_at | date:'medium' }}</small></p>
+                    }
+                } @else {
+                <p class="text-muted">No hay datos de ubicación disponibles.</p>
+                }
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="card-title mb-0">🎬 Episodios</h5>
+        </div>
+        <div class="card-body p-0">
+            @if (personaje.episodios && personaje.episodios.length > 0) {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Fecha Emisión</th>
+                        <th>Código</th>
+                        <th>URL</th>
+                        <th>Creado</th>
+                        <th>Actualizado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (episodio of personaje.episodios; track episodio.id) {
+                        <tr>
+                            <td>{{ episodio.id || 'N/A' }}</td>
+                            <td>{{ episodio.nombre || 'N/A' }}</td>
+                            <td>{{ episodio.fecha_emision | date:'shortDate' || 'N/A' }}</td>
+                            <td>{{ episodio.codigo_episodio || 'N/A' }}</td>
+                            <td><a [href]="episodio.url || '#'" target="_blank">{{ episodio.url || 'N/A' }}</a></td>
+                            <td>{{ episodio.created_at | date:'shortDate' || 'N/A' }}</td>
+                            <td>{{ episodio.updated_at | date:'shortDate' || 'N/A' }}</td>
+                        </tr>
+                        }
+                    </tbody>
+                    </table>
+                </div>
+            } @else {
+            <p class="p-3 text-muted text-center">No hay episodios asociados a este personaje.</p>
+            }
+        </div>
+    </div>
+  } @else {
+    <div class="alert alert-info text-center" role="alert">
+      Cargando detalles del personaje o no se encontró el personaje.
+    </div>
+  }
+    
+</div>

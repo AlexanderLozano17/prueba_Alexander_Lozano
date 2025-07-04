@@ -14,7 +14,7 @@ class PersonajeSeeder extends Seeder
      */
     public function run(): void
     {
-        Personaje::factory()->count(50)->create()->each(function ($personaje) {
+        Personaje::factory()->count(10)->create()->each(function ($personaje) {
             // Para cada personaje, asócialo con entre 1 y 5 episodios aleatorios
             $episodios = Episodio::inRandomOrder()->limit(rand(1, 5))->get();
             $personaje->episodios()->attach($episodios);

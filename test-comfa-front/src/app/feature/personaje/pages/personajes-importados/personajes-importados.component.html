@@ -1,0 +1,12 @@
+<ul>
+    @for (personaje of importarPersonajeService.personajes; track personaje.id) {
+        <li>
+            <app-card-personajes-importados [personaje]="personaje"
+                                            (deleteId)="eliminarPersonajeImportado($event)"></app-card-personajes-importados>
+        </li>
+    } @empty {
+        <div class="col-12">
+            <p class="text-center text-muted">No hay personajes importados para mostrar.</p>
+        </div>
+    }
+</ul>

@@ -12,6 +12,7 @@ export class ImportarPersonajeService {
 
   private personajesApiUrl = environment.endpoints.personajes; 
   public personaje: PersonajeImportar | undefined;
+  public personajes: PersonajeImportar[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +33,24 @@ export class ImportarPersonajeService {
     return this.http.get<PersonajeImportar[]>(this.personajesApiUrl);
   }
 
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
+  obtenerPersonajeImportado(id: number): Observable<PersonajeImportar> {
+    return this.http.get<PersonajeImportar>(`${this.personajesApiUrl}/${id}`);
+  }
+
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
+  eliminarPersonajeImportado(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.personajesApiUrl}/${id}`, { observe: 'response' });
+  }
+  
   private mapUbicacionRickMortyToUbicacion(ubicacionRM: UbicacionRickMorty): Ubicacion {
     return {
       nombre: ubicacionRM.name,
