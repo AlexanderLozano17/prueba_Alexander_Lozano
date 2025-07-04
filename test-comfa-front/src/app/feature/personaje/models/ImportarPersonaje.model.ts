@@ -27,5 +27,3 @@ export interface PersonajeImportar {
   origen?: Ubicacion;
   ubicacion?: Ubicacion;
 }
-
-// Las interfaces Personaje, UbicacionRickMorty y ApiResponse se mantienen como estaban.

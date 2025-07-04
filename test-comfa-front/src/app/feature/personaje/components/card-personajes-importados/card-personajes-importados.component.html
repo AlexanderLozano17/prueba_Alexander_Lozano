@@ -1,0 +1,65 @@
+<div class="card mb-3 shadow-sm h-100">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]="personaje()?.imagen_url" class="img-fluid rounded-start card-img-custom" [alt]="personaje()?.nombre">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ personaje()?.nombre }}</h5>
+        <p class="card-text">
+          <small class="text-muted">ID: {{ personaje()?.id }}</small><br>
+          
+          <span class="badge" [ngClass]="{
+            'bg-success': personaje()?.estado == 'Alive',
+            'bg-danger': personaje()?.estado == 'Dead',
+            'bg-secondary': personaje()?.estado == 'unknown'
+          }">
+            {{ personaje()?.estado }}
+          </span>
+
+          <span class="badge bg-info text-dark ms-2">{{ personaje()?.especie }}</span>
+        </p>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Tipo:</strong> {{ personaje()?.tipo || 'N/A' }}
+          </li>
+          <li class="list-group-item">
+            <strong>Género:</strong> {{ personaje()?.genero }}
+          </li>
+         
+          @if(personaje()?.origen) {
+            <li class="list-group-item">
+              <strong>Origen:</strong> {{ personaje()?.origen?.nombre }}
+                @if(personaje()?.origen?.dimension) {
+                  <small class="text-muted"> ({{ personaje()?.origen?.dimension }})</small>
+                }
+            </li>
+          }
+
+          @if(personaje()?.ubicacion) {
+            <li class="list-group-item">
+              <strong>Ubicación:</strong> {{ personaje()?.ubicacion?.nombre }}
+                @if(personaje()?.ubicacion?.dimension) {
+                  <small> ({{ personaje()?.ubicacion?.dimension }})</small>
+                }              
+            </li>
+          }
+                    
+          <li class="list-group-item">
+            <small class="text-muted">Creado: {{ personaje()?.created_at | date:'shortDate' }}</small>
+
+            @if(personaje()?.updated_at) {
+              &nbsp;<small class="text-muted ms-2">Actualizado: {{ personaje()?.updated_at | date:'shortDate' }}</small>
+            }
+          </li>
+
+          <div class="d-flex justify-content-end gap-2 mt-3">
+            <button class="btn btn-danger btn-sm" (click)="onEliminar()">Eliminar</button>
+          </div>
+        </ul>
+
+        </div>
+    </div>
+  </div>
+</div>

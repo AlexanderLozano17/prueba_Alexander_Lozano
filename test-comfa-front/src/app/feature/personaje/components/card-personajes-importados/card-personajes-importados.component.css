@@ -1,0 +1,62 @@
+/* src/app/features/personaje/components/card-personaje-importado/card-personaje-importado.component.css */
+
+.card-img-custom {
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  height: 100%; /* O ajusta a una altura fija si lo prefieres, ej. 200px */
+  width: 100%;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.list-group-item {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em; 
+  font-size: 0.75em;    
+  font-weight: 700;      
+  line-height: 1;        
+  color: #fff;          
+  text-align: center;    
+  white-space: nowrap;  
+  vertical-align: baseline; 
+  border-radius: 0.375rem;
+  /* Propiedad para transiciones suaves al cambiar de estado */
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.bg-success {
+  color: #fff !important;
+  background-color: #198754 !important; 
+}
+
+
+.bg-danger {
+  color: #fff !important; 
+  background-color: #dc3545 !important; 
+}
+
+.bg-secondary {
+  color: #fff !important;
+  background-color: #6c757d !important; 
+}
