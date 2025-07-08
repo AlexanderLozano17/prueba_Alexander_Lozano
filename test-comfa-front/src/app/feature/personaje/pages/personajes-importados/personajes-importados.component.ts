@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ImportarPersonajeService } from '../../services/importar-personaje.service';
 import { CardPersonajesImportadosComponent } from '../../components/card-personajes-importados/card-personajes-importados.component';
 import { HttpResponse } from '@angular/common/http';
+import { SeekerComponent } from '../../components/seeker/seeker.component';
 
 @Component({
   selector: 'app-personajes-importados',
   standalone: true,
-  imports: [CardPersonajesImportadosComponent],
+  imports: [CardPersonajesImportadosComponent,
+    SeekerComponent],
   templateUrl: './personajes-importados.component.html',
   styleUrls: ['./personajes-importados.component.css',
               '../personaje-listar/personaje-listar.component.css'
@@ -32,16 +34,29 @@ export class PersonajesImportadosComponent implements OnInit{
     });
   }
 
+  buscarPersonajesImportados(valor: string): void {
+    this.importarPersonajeService.buscarPersonaje(valor).subscribe({
+      next: (response) => {
+        console.log(valor);
+        console.log(response);
+        this.importarPersonajeService.personajes = response;
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    });
+  }
+
   eliminarPersonajeImportado(id: number): void {
     this.importarPersonajeService.eliminarPersonajeImportado(id).subscribe({
-      next: (response: HttpResponse<any>) => { 
-        const statusCode = response.status; 
-        const responseBody = response.body; 
+      next: (response: HttpResponse<any>) => {
+        const statusCode = response.status;
+        const responseBody = response.body;
 
         console.log(`Personaje eliminado exitosamente.`);
         console.log(`Código de estado HTTP: ${statusCode}`);
-        console.log(`Mensaje del servidor:`, responseBody.message); 
-        
+        console.log(`Mensaje del servidor:`, responseBody.message);
+
         if (statusCode === 200 || statusCode === 204) {
           console.log(`Personaje eliminado. Estado HTTP: ${statusCode}`);
           alert('Personaje eliminado exitosamente.');
@@ -52,9 +67,9 @@ export class PersonajesImportadosComponent implements OnInit{
           this.obtenerPersonajesImportados();
         }
       },
-      error: (e) => { 
+      error: (e) => {
         console.error('Error al eliminar el personaje:', e);
-        if (e.status) { 
+        if (e.status) {
           alert(`Error al eliminar el personaje. Código de estado: ${e.status}`);
         } else {
           alert("Error al eliminar el personaje: " + (e.message || 'Error desconocido'));

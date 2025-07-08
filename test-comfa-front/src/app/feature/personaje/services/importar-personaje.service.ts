@@ -10,47 +10,62 @@ import { Personaje, UbicacionRickMorty } from '../models/Personaje.model';
 })
 export class ImportarPersonajeService {
 
-  private personajesApiUrl = environment.endpoints.personajes; 
+  private personajesApiUrl = environment.endpoints.personajes;
+
   public personaje: PersonajeImportar | undefined;
   public personajes: PersonajeImportar[] = [];
 
   constructor(private http: HttpClient) { }
 
   /**
-   * 
-   * @param personaje 
-   * @returns 
+   *
+   * @param personaje
+   * @returns
    */
   importarPersonaje(personaje: PersonajeImportar): Observable<PersonajeImportar> {
     return this.http.post<PersonajeImportar>(this.personajesApiUrl, personaje);
   }
 
   /**
-   * 
-   * @returns 
+   *
+   * @returns
    */
   obtenerPersonajeImportados(): Observable<PersonajeImportar[]> {
     return this.http.get<PersonajeImportar[]>(this.personajesApiUrl);
   }
 
   /**
-   * 
-   * @param id 
-   * @returns 
+   *
+   * @param id
+   * @returns
    */
   obtenerPersonajeImportado(id: number): Observable<PersonajeImportar> {
     return this.http.get<PersonajeImportar>(`${this.personajesApiUrl}/${id}`);
   }
 
   /**
-   * 
-   * @param id 
-   * @returns 
+   *
+   * @param id
+   * @returns
    */
   eliminarPersonajeImportado(id: number): Observable<any> {
     return this.http.delete<any>(`${this.personajesApiUrl}/${id}`, { observe: 'response' });
   }
-  
+
+  /**
+   *
+   * @param valor
+   * @returns
+   */
+  buscarPersonaje(valor: string):Observable<PersonajeImportar[]> {
+    return this.http.get<PersonajeImportar[]>(`${this.personajesApiUrl}/buscar?q=${valor}`);
+  }
+
+  /**
+   *
+   * @param ubicacionRM
+   * @returns
+   */
   private mapUbicacionRickMortyToUbicacion(ubicacionRM: UbicacionRickMorty): Ubicacion {
     return {
       nombre: ubicacionRM.name,
@@ -80,4 +95,5 @@ export class ImportarPersonajeService {
       ubicacion: this.mapUbicacionRickMortyToUbicacion(personaje.location),
     };
   }
+
 }

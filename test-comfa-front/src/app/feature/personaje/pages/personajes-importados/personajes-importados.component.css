@@ -1,0 +1,11 @@
+.contenedor-padre {
+    width: 100%; /* Ancho opcional del padre */
+    padding: 20px;
+    text-align: center; /* Esto centrará el texto dentro del padre, no el div hijo */
+}
+
+.div-a-centrar-horizontal {
+    width: 50%; /* ¡Importante! El div debe tener un ancho definido */
+    margin: 0 auto; /* El truco: 0 para margen vertical, auto para margen horizontal */
+    padding: 10px;
+}

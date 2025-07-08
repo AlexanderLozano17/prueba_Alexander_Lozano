@@ -1,8 +1,18 @@
+<div class="contenedor-padre">
+    <div class="div-a-centrar-horizontal">
+        <app-seeker
+          (busqueda)="buscarPersonajesImportados($event)">
+        </app-seeker>
+    </div>
+</div>
+
 <ul>
     @for (personaje of importarPersonajeService.personajes; track personaje.id) {
         <li>
-            <app-card-personajes-importados [personaje]="personaje"
-                                            (deleteId)="eliminarPersonajeImportado($event)"></app-card-personajes-importados>
+            <app-card-personajes-importados
+              [personaje]="personaje"
+              (deleteId)="eliminarPersonajeImportado($event)">
+            </app-card-personajes-importados>
         </li>
     } @empty {
         <div class="col-12">
