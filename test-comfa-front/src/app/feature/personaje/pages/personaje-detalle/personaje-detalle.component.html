@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row g-4 mb-4">
             <div class="col-md-6">
                 <div class="card shadow-sm h-100">
@@ -61,14 +61,14 @@
                 <h5 class="card-title mb-0">🗺️ Detalles de Ubicación</h5>
             </div>
             <div class="card-body">
-                @if (personaje?.ubicacion) {
-                    <p><strong>Nombre:</strong> {{ personaje?.ubicacion?.nombre }}</p>
-                    <p><strong>Tipo:</strong> {{ personaje?.ubicacion?.tipo || 'N/A' }}</p>
-                    <p><strong>Dimensión:</strong> {{ personaje?.ubicacion?.dimension || 'N/A' }}</p>
-                    <p><strong>URL:</strong> <a [href]="personaje?.ubicacion?.url" target="_blank">{{ personaje?.ubicacion?.url }}</a></p>
-                    <p><small class="text-muted">Creado: {{ personaje?.ubicacion?.created_at | date:'medium' }}</small></p>
-                    @if (personaje?.ubicacion?.updated_at) {
-                        <p><small class="text-muted">Actualizado: {{ personaje?.ubicacion?.updated_at | date:'medium' }}</small></p>
+                @if (personaje.ubicacion) {
+                    <p><strong>Nombre:</strong> {{ personaje.ubicacion?.nombre }}</p>
+                    <p><strong>Tipo:</strong> {{ personaje.ubicacion?.tipo || 'N/A' }}</p>
+                    <p><strong>Dimensión:</strong> {{ personaje.ubicacion?.dimension || 'N/A' }}</p>
+                    <p><strong>URL:</strong> <a [href]="personaje.ubicacion?.url" target="_blank">{{ personaje.ubicacion?.url }}</a></p>
+                    <p><small class="text-muted">Creado: {{ personaje.ubicacion?.created_at | date:'medium' }}</small></p>
+                    @if (personaje.ubicacion?.updated_at) {
+                        <p><small class="text-muted">Actualizado: {{ personaje.ubicacion?.updated_at | date:'medium' }}</small></p>
                     }
                 } @else {
                 <p class="text-muted">No hay datos de ubicación disponibles.</p>
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">
             <h5 class="card-title mb-0">🎬 Episodios</h5>
@@ -102,11 +102,11 @@
                         <tr>
                             <td>{{ episodio.id || 'N/A' }}</td>
                             <td>{{ episodio.nombre || 'N/A' }}</td>
-                            <td>{{ episodio.fecha_emision | date:'shortDate' || 'N/A' }}</td>
+                            <td>{{ episodio.fecha_emision }}</td>
                             <td>{{ episodio.codigo_episodio || 'N/A' }}</td>
                             <td><a [href]="episodio.url || '#'" target="_blank">{{ episodio.url || 'N/A' }}</a></td>
-                            <td>{{ episodio.created_at | date:'shortDate' || 'N/A' }}</td>
-                            <td>{{ episodio.updated_at | date:'shortDate' || 'N/A' }}</td>
+                            <td>{{ episodio.created_at  }}</td>
+                            <td>{{ episodio.updated_at  }}</td>
                         </tr>
                         }
                     </tbody>
@@ -122,5 +122,5 @@
       Cargando detalles del personaje o no se encontró el personaje.
     </div>
   }
-    
+
 </div>

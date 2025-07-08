@@ -59,7 +59,7 @@ class PersonajeController extends Controller
      * Muestra un personaje específico por su ID.
      */
     public function show(string $id)
-    {dd($id);
+    {
         $personaje = Personaje::with(['origen', 'ubicacion', 'episodios'])->find($id);
 
         if (!$personaje) {

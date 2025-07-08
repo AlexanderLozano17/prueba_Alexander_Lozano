@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,8 @@ export class SeekerComponent {
 
   valorBusqueda: string = '';
   @Output() busqueda = new EventEmitter<string>();
+
+  cantidadPersonajes = input<Number | 0>();
 
   onValorBusquedaChange() {
     console.log('Nuevo valor:', this.valorBusqueda);
