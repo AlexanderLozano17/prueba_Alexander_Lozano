@@ -18,6 +18,8 @@ export class PersonajesImportadosComponent implements OnInit{
 
   constructor(public importarPersonajeService : ImportarPersonajeService) {}
 
+  cantidadPersonajes: Number = 0;
+
   ngOnInit(): void {
     this.obtenerPersonajesImportados();
   }
@@ -27,6 +29,7 @@ export class PersonajesImportadosComponent implements OnInit{
       next: (response) => {
         console.log(response);
         this.importarPersonajeService.personajes = response;
+        this.cantidadPersonajes = response.length;
       },
       error: (e) => {
 
@@ -40,6 +43,7 @@ export class PersonajesImportadosComponent implements OnInit{
         console.log(valor);
         console.log(response);
         this.importarPersonajeService.personajes = response;
+        this.cantidadPersonajes = response.length;
       },
       error: (e) => {
         console.error(e);
