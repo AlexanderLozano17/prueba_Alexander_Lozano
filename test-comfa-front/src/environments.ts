@@ -1,5 +1,5 @@
 const API_BASE = 'http://localhost:8000';
-const API_VERSION = 'api'; 
+const API_VERSION = 'api';
 
 const API_BASE_EXTERNA = "https://rickandmortyapi.com/api/"
 

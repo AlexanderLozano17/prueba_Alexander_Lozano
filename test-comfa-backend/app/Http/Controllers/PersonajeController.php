@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Personaje; 
+use App\Models\Personaje;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException; 
+use Illuminate\Validation\ValidationException;
 
 class PersonajeController extends Controller
 {
@@ -32,14 +32,14 @@ class PersonajeController extends Controller
                 'especie' => 'required|string|max:255',
                 'tipo' => 'nullable|string|max:255',
                 'genero' => 'required|string|max:255',
-                'origen_id' => 'nullable|exists:localizaciones,id', 
+                'origen_id' => 'nullable|exists:localizaciones,id',
                 'ubicacion_id' => 'nullable|exists:localizaciones,id',
                 'imagen_url' => 'nullable|url|max:255',
                 'url' => 'nullable|url|max:255',
             ]);
 
             $personaje = Personaje::create($validatedData);
-            return response()->json($personaje, 201); 
+            return response()->json($personaje, 201);
 
         } catch (ValidationException $e) {
             return response()->json([
@@ -59,7 +59,7 @@ class PersonajeController extends Controller
      * Muestra un personaje específico por su ID.
      */
     public function show(string $id)
-    {
+    {dd($id);
         $personaje = Personaje::with(['origen', 'ubicacion', 'episodios'])->find($id);
 
         if (!$personaje) {
